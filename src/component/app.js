@@ -25,7 +25,8 @@ class App extends Component {
     @action handle() {
         this.props.appState.prototype.data.push(1);
         // 由全局状态数stores传进来的数据也可以在任何地方进行修改
-        this.props.store.fetchData.name = "Hello Mobx!";
+        // this.props.store.fetchData.name = "Hello Mobx!";
+        this.props.store.fetchData.Edit("Hello Mobx!");
     }
 
     render() {
