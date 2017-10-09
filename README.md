@@ -8,6 +8,7 @@
 ## 如何开始项目
 
 
+* `npm i` ,`cnpm i` or `yarn` 下载依赖包
 * `npm start` 开启项目并运行在3000端口
 * `npm run build` 打包项目
 
