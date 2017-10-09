@@ -21,12 +21,33 @@ class appState {
 // observer监听状态变化更改ui
 @observer
 class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: []
+        }
+    }
+
 
     @action handle() {
         this.props.appState.prototype.data.push(1);
         // 由全局状态数stores传进来的数据也可以在任何地方进行修改
         // this.props.store.fetchData.name = "Hello Mobx!";
         this.props.store.fetchData.Edit("Hello Mobx!");
+    }
+
+    componentWillMount() {
+        // package.json中设置"proxy": "http://m.maizuo.com"  
+        //api请求时会自动代理到http://m.maizuo.com，
+        //前后端分离以及请求第三方api时进行设置
+        fetch('/v4/api/billboard/home').then(x => {
+            return x.json()
+        }).then(x => {
+            console.log(x);
+            this.setState({
+                data: x.data.billboards
+            });
+        })
     }
 
     render() {
@@ -38,7 +59,16 @@ class App extends Component {
                 <Link to="/app/user">打开子页面</Link>
                 --
                 <Link to="/home">打开总页面</Link>
-
+                <div style={{}}>
+                    {this.state.data.map((x, i) => {
+                        return (
+                            <div key={i}>
+                                <img src={x.imageUrl} alt="" />
+                                <span style={{ color: "blue" }}>{x.name}</span>
+                            </div>
+                        )
+                    })}
+                </div>
                 <ul>
                     {this.props.appState.prototype.data.map((x, i) => {
                         return (
