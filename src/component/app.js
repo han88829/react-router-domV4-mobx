@@ -93,7 +93,7 @@ class AppS extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{ textAlign: "center" }}>
                 <App appState={appState} {...this.props} />
                 <div>
                     {/* 路由定义user前面必须跟home父组件路由，否则无法识别 */}
