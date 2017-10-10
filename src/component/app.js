@@ -94,6 +94,7 @@ class AppS extends Component {
     render() {
         return (
             <div style={{ textAlign: "center" }}>
+                {/* props全部传递给子组件，自定义的mobx关联appState需要另外传入 */}
                 <App appState={appState} {...this.props} />
                 <div>
                     {/* 路由定义user前面必须跟home父组件路由，否则无法识别 */}
