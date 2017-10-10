@@ -3,6 +3,7 @@ import { inject, observer } from 'mobx-react';
 import { observable, action, useStrict } from "mobx";
 import { Route, Switch, Link } from 'react-router-dom';
 import User from './user';
+import Test from './test';
 
 
 /*
@@ -45,6 +46,7 @@ class App extends Component {
             return x.json()
         }).then(x => {
             console.log(x);
+            x.data.billboards.length = 1;
             this.setState({
                 data: x.data.billboards
             });
@@ -59,6 +61,8 @@ class App extends Component {
                 <Link to="/app/user">打开子页面</Link>
                 --
                 <Link to="/home">打开总页面</Link>
+                --
+                <Link to="/app/test">打开测试页</Link>
 
                 <div style={{}}>
                     {this.state.data.map((x, i) => {
@@ -96,6 +100,7 @@ class AppS extends Component {
                     {/* 自路由必须写在Apps里面，如果写在上放的App内，会造成点击跳转，url变化页面未动，必须在state props改变之后，才会触发找到子页面 */}
                     <Switch>
                         <Route exact path="/app/user" component={User} />
+                        <Route exact path="/app/test" component={Test} />
                     </Switch>
                 </div>
             </div>
