@@ -24,6 +24,7 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            total: 1,
             data: []
         }
     }
@@ -49,7 +50,6 @@ class App extends Component {
             });
         })
     }
-
     render() {
         return (
             <div className="App" >
@@ -59,6 +59,7 @@ class App extends Component {
                 <Link to="/app/user">打开子页面</Link>
                 --
                 <Link to="/home">打开总页面</Link>
+
                 <div style={{}}>
                     {this.state.data.map((x, i) => {
                         return (
@@ -89,10 +90,10 @@ class AppS extends Component {
     render() {
         return (
             <div>
-                <App appState={appState} />
+                <App appState={appState} {...this.props} />
                 <div>
                     {/* 路由定义user前面必须跟home父组件路由，否则无法识别 */}
-                    {/* 自路由必须写在Apps里面，如果写在上放的App内，会造成点击跳转，url变化页面未动，必须在state props改变之后，才会出发找到子页面 */}
+                    {/* 自路由必须写在Apps里面，如果写在上放的App内，会造成点击跳转，url变化页面未动，必须在state props改变之后，才会触发找到子页面 */}
                     <Switch>
                         <Route exact path="/app/user" component={User} />
                     </Switch>
