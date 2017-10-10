@@ -1,3 +1,7 @@
+/*
+ * 引入antd，并结合babel实现按需加载
+ * 测试模版
+ */
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import './test.css';
