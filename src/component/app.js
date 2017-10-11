@@ -26,7 +26,7 @@ class App extends Component {
         super(props);
         this.state = {
             total: 1,
-            data: []
+            data: [],
         }
     }
 
@@ -38,7 +38,7 @@ class App extends Component {
         this.props.store.fetchData.Edit("Hello Mobx!");
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // package.json中设置"proxy": "http://m.maizuo.com"  
         //api请求时会自动代理到http://m.maizuo.com，
         //前后端分离以及请求第三方api时进行设置
@@ -63,6 +63,11 @@ class App extends Component {
                 <Link to="/home">打开总页面</Link>
                 --
                 <Link to="/app/test">打开测试页</Link>
+                --
+                <a onClick={() => {
+                    localStorage.removeItem('token');
+                    this.props.history.push('/login')
+                }}>退出登录</a>
 
                 <div style={{}}>
                     {this.state.data.map((x, i) => {
@@ -90,6 +95,26 @@ class App extends Component {
 }
 
 class AppS extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            token: localStorage.getItem('token'),
+        }
+    }
+
+    componentWillMount() {
+        if (!this.state.token) {
+            this.props.history.push('/login');
+            return
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (!this.state.token) {
+            this.props.history.push('/login');
+            return
+        }
+    }
 
     render() {
         return (
