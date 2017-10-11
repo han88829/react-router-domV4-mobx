@@ -39,13 +39,13 @@ class App extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props)
         // package.json中设置"proxy": "http://m.maizuo.com"  
         //api请求时会自动代理到http://m.maizuo.com，
         //前后端分离以及请求第三方api时进行设置
         fetch('/v4/api/billboard/home').then(x => {
             return x.json()
         }).then(x => {
-            console.log(x);
             x.data.billboards.length = 1;
             this.setState({
                 data: x.data.billboards
@@ -94,12 +94,14 @@ class App extends Component {
     }
 }
 
+@inject('store')
 class AppS extends Component {
     constructor(props) {
         super(props);
         this.state = {
             token: localStorage.getItem('token'),
         }
+        console.log(props)
     }
 
     componentWillMount() {

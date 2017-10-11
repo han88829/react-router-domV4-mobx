@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { inject } from 'mobx-react';
+import { observable, action, useStrict } from "mobx";
 import './test.css';
+
+useStrict(true)
 const FormItem = Form.Item;
 
+@inject('store')
 class NormalLoginForm extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 localStorage.setItem('token', JSON.stringify(values));
+                this.props.store.LoginToken.token = JSON.stringify(values);
+                console.log(this.props)
                 this.props.history.push('/app')
             }
         });
