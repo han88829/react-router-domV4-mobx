@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import { inject } from 'mobx-react';
 import { observable, action, useStrict } from "mobx";
 import './test.css';
@@ -16,6 +16,7 @@ class NormalLoginForm extends React.Component {
                 localStorage.setItem('token', JSON.stringify(values));
                 this.props.store.LoginToken.token = JSON.stringify(values);
                 console.log(this.props)
+                message.success("登录成功！")
                 this.props.history.push('/app')
             }
         });
