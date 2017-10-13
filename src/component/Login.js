@@ -13,9 +13,17 @@ class NormalLoginForm extends React.Component {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                localStorage.setItem('token', JSON.stringify(values));
-                this.props.store.LoginToken.token = JSON.stringify(values);
-                console.log(this.props)
+                // 对字符串进行加密处理
+                let str = JSON.stringify(values), ss = "";
+                for (let i = 0; i < str.length; i++) {
+                    ss += String.fromCharCode(str.charCodeAt(i) + 659);
+                }
+                // let a = "";
+                // for (let i = 0; i < ss.length; i++) {
+                //     a += String.fromCharCode(ss.charCodeAt(i) - 659);
+                // }
+                localStorage.setItem('token', ss);
+                this.props.store.LoginToken.token = ss;
                 message.success("登录成功！")
                 this.props.history.push('/app')
             }
