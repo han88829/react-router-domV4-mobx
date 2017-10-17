@@ -35,6 +35,7 @@
     "jest": "20.0.4",
     "mobx": "^3.3.0",
     "mobx-react": "^4.3.3",
+    "moment": "^2.19.1",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.6",
@@ -112,5 +113,5 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://m.maizuo.com"
+  "proxy": "http://hanpengdesign.com"
 }
