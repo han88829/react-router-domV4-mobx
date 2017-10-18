@@ -29,6 +29,12 @@ class NormalLoginForm extends React.Component {
             }
         });
     }
+
+    componentWillUnmount() {
+        // 组件即将销毁的时候do something 。。。
+    }
+
+
     render() {
         const { getFieldDecorator } = this.props.form;
         return (
