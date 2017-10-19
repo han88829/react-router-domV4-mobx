@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch } from 'antd';
 import { Link, Route, Redirect } from 'react-router-dom';
+import { inject } from 'mobx-react';
 import App from './app';
 import './admin.css';
 
@@ -10,7 +11,7 @@ const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 
 
-
+@inject("store")
 class Admin extends React.Component {
   state = {
     collapsed: false,
@@ -101,6 +102,7 @@ class Admin extends React.Component {
             >
               <Icon type={!this.state.collapsed ? "menu-fold" : "menu-unfold"} />
             </div>
+            <span>{this.props.store.fetchData.name}</span>
           </div>
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '12px 0' }}>
