@@ -1,0 +1,61 @@
+.home{
+    height:100vh;
+    overflow: hidden;
+}
+.home .homeLogo{
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+    margin: 10px 0;
+    overflow: hidden;
+}
+
+.home .homeLogo img{
+    width: 40px;
+    margin-right: 8px;
+}
+.home .homeLogo span{
+    vertical-align: text-bottom;
+    font-size: 16px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.home .contentTitle{
+    -webkit-box-shadow: 4px 4px 40px 0 rgba(0,0,0,.05);
+    box-shadow: 4px 4px 40px 0 rgba(0,0,0,.05);
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    height: 47px;
+    background-color: #fff;
+    z-index: 999;
+}
+._3sSwc{
+    width: 47px;
+    height: 47px;
+    line-height: 47px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+    -webkit-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+._3sSwc:hover{
+    background-color: rgba(16,142,233,.15);
+}
+
+.home .SilderEdit{
+    height: 40; 
+    text-align: center; 
+    line-height: 40px; 
+    position: absolute; 
+    bottom: 0; 
+    padding: 0 30px;
+}

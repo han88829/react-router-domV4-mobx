@@ -50,6 +50,8 @@ class App extends Component {
             this.setState({
                 data: x.data.billboards
             });
+        }).catch((err) => {
+            console.error(err)
         })
     }
     render() {
