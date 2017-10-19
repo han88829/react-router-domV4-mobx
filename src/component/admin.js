@@ -22,6 +22,16 @@ class Admin extends React.Component {
   render() {
     // 随主题颜色变化
     const color = this.state.theme ? "rgba(255, 255, 255, 0.67)" : "rgba(0,0,0,0.67)";
+    const img = !this.state.collapsed ?
+      {
+        width: "40px",
+        marginRight: 8,
+      }
+      :
+      {
+        width: " 28px",
+        margin: "6px 7px",
+      }
     return (
       <Layout className="home">
         <Sider
@@ -30,7 +40,7 @@ class Admin extends React.Component {
         >
           {/* logo */}
           <div className="homeLogo">
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="logo" style={img} />
             <span style={{ color: color }}>manage</span>
           </div>
           <Menu theme={this.state.theme ? "dark" : "light"} defaultSelectedKeys={['2']} mode="inline">
@@ -88,7 +98,7 @@ class Admin extends React.Component {
                 this.onCollapse(!collapsed);
               }}
             >
-              <Icon type={this.state.collapsed ? "menu-fold" : "menu-unfold"} />
+              <Icon type={!this.state.collapsed ? "menu-fold" : "menu-unfold"} />
             </div>
           </div>
           <Content style={{ margin: '0 16px' }}>

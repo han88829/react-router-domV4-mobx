@@ -17,7 +17,7 @@ class RouterS extends Component {
             <Route path="/home" exact component={Admin} />
             <Route path="/login" exact component={Login} />
 
-            <Redirect from="/" to="/app" />
+            <Redirect from="/" to="/home" />
           </Switch>
         </div>
       </Router>
