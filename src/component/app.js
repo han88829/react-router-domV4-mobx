@@ -60,11 +60,11 @@ class App extends Component {
                 <p className="App-intro" onClick={this.handle.bind(this)}>
                     {this.props.store.fetchData.name}
                 </p>
-                <Link to="/app/user">打开子页面</Link>
+                <Link to="/home/app/user">打开子页面</Link>
                 --
                 <Link to="/home">打开总页面</Link>
                 --
-                <Link to="/app/test">打开测试页</Link>
+                <Link to="/home/app/test">打开测试页</Link>
                 --
                 <a onClick={() => {
                     localStorage.removeItem('token');
@@ -129,8 +129,8 @@ class AppS extends Component {
                     {/* 路由定义user前面必须跟home父组件路由，否则无法识别 */}
                     {/* 自路由必须写在Apps里面，如果写在上放的App内，会造成点击跳转，url变化页面未动，必须在state props改变之后，才会触发找到子页面 */}
                     <Switch>
-                        <Route exact path="/app/user" component={User} />
-                        <Route exact path="/app/test" component={Test} />
+                        <Route exact path="/home/app/user" component={User} />
+                        <Route exact path="/home/app/test" component={Test} />
                     </Switch>
                 </div>
             </div>

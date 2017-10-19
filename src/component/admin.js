@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, Route, Redirect } from 'react-router-dom';
+import App from './app';
 import './admin.css';
 
 import logo from '../assets/logo.png';
@@ -46,7 +47,7 @@ class Admin extends React.Component {
           <Menu theme={this.state.theme ? "dark" : "light"} defaultSelectedKeys={['2']} mode="inline">
             <Menu.Item key="1">
               <Icon type="pie-chart" />
-              <span><Link to="/app" style={{ color: color, marginLeft: 5 }} >首页</Link></span>
+              <span><Link to="/home/app" style={{ color: color, marginLeft: 5 }} >首页</Link></span>
             </Menu.Item>
             <Menu.Item key="2">
               <Icon type="desktop" />
@@ -107,7 +108,7 @@ class Admin extends React.Component {
               <Breadcrumb.Item>Bill</Breadcrumb.Item>
             </Breadcrumb>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
-              Bill is a cat.
+              <Route path="/home/app" component={App} />
             </div>
           </Content>
         </Layout>
