@@ -16,11 +16,18 @@ class Admin extends React.Component {
   state = {
     collapsed: false,
     theme: true,
+    name: ""
   };
   onCollapse = (collapsed) => {
     console.log(collapsed);
     this.setState({ collapsed });
   }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ name: nextProps.store.fetchData.name });
+  }
+
+
   render() {
     // 随主题颜色变化
     const color = this.state.theme ? "rgba(255, 255, 255, 0.67)" : "rgba(0,0,0,0.67)";
@@ -34,6 +41,7 @@ class Admin extends React.Component {
         width: " 28px",
         margin: "6px 7px",
       }
+
     return (
       <Layout className="home">
         <Sider
@@ -45,14 +53,18 @@ class Admin extends React.Component {
             <img src={logo} alt="logo" style={img} />
             <span style={{ color: color }}>manage</span>
           </div>
-          <Menu theme={this.state.theme ? "dark" : "light"} defaultSelectedKeys={['2']} mode="inline">
+          <Menu theme={this.state.theme ? "dark" : "light"} defaultSelectedKeys={['1']} mode="inline">
             <Menu.Item key="1">
-              <Icon type="pie-chart" />
-              <span><Link to="/home/app" style={{ color: color, marginLeft: 5 }} >首页</Link></span>
+              <Link to="/home/app" style={{ color: color }}>
+                <Icon type="pie-chart" />
+                <span>首页</span>
+              </Link>
             </Menu.Item>
             <Menu.Item key="2">
-              <Icon type="desktop" />
-              <span>菜单页</span>
+              <Link to="/home" style={{ color: color }}>
+                <Icon type="desktop" />
+                <span>菜单页</span>
+              </Link>
             </Menu.Item>
             <SubMenu
               key="sub1"
@@ -102,7 +114,7 @@ class Admin extends React.Component {
             >
               <Icon type={!this.state.collapsed ? "menu-fold" : "menu-unfold"} />
             </div>
-            <span>{this.props.store.fetchData.name}</span>
+            <span>{this.state.name}</span>
           </div>
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '12px 0' }}>
