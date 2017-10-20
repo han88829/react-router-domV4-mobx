@@ -13,36 +13,41 @@ const { CheckableTag } = Tag;
 
 @inject("store")
 class Admin extends React.Component {
+
   state = {
     collapsed: false,
     theme: true,
     name: ""
   };
+
+
   onCollapse = (collapsed) => {
-    console.log(collapsed);
     this.setState({ collapsed });
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({ name: nextProps.store.fetchData.name });
-    console.log(window.location.pathname)
   }
 
 
   render() {
+    console.log(this.props)
     // 随主题颜色变化
     const color = this.state.theme ? "rgba(255, 255, 255, 0.67)" : "rgba(0,0,0,0.67)";
     // 管理子页面的打开记录和状态
     const MenuC = this.props.store.menuName.routeKey.map((x, i) => {
       return (
-        <div className={x.key == window.location.pathname ? "menuSelect" : "menuNo"} key={i} >
-          <div></div>
-          <span>菜单</span>
-          <span className="close">X</span>
-        </div >
+        <Link to={x.key} key={i}>
+          <div className={x.key == window.location.pathname ? "menuSelect" : "menuNo"}  >
+            <span>{x.name}</span>
+            <span className="close" style={{ display: i == 0 ? "none" : "" }} onClick={() => {
+              this.props.store.menuName.deleteKey(x, { ...this.props })
+            }}>X</span>
+          </div >
+        </Link>
       )
     })
-    console.log(MenuC)
+
     const img = !this.state.collapsed ?
       {
         width: "40px",
@@ -65,37 +70,50 @@ class Admin extends React.Component {
             <img src={logo} alt="logo" style={img} />
             <span style={{ color: color }}>manage</span>
           </div>
-          <Menu theme={this.state.theme ? "dark" : "light"} defaultSelectedKeys={['1']} mode="inline">
-            <Menu.Item key="1">
-              <Link to="/home/app" style={{ color: color }}>
+          <Menu theme={this.state.theme ? "dark" : "light"} defaultSelectedKeys={['2']} mode="inline">
+            <Menu.Item key="1" >
+              <div
+                style={{ color: color }}
+                onClick={() => {
+                  this.props.store.menuName.addKey({ name: "首页", key: "/home/app" }, { ...this.props })
+                }}
+              >
                 <Icon type="pie-chart" />
                 <span>首页</span>
-              </Link>
+              </div>
             </Menu.Item>
             <Menu.Item key="2">
-              <Link to="/home" style={{ color: color }}>
+              <div style={{ color: color }} onClick={() => {
+                this.props.store.menuName.addKey({ name: "菜单页", key: "/home" }, { ...this.props })
+              }}>
                 <Icon type="desktop" />
                 <span>菜单页</span>
-              </Link>
+              </div>
             </Menu.Item>
             <SubMenu
               key="sub1"
               title={<span><Icon type="user" /><span>User</span></span>}
             >
               <Menu.Item key="3">
-                <Link to="/home/app/user/Tom" style={{ color: color }}>
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "Tom", key: "/home/app/user/Tom" }, { ...this.props })
+                }}>
                   Tom
-                </Link>
+                </div>
               </Menu.Item>
               <Menu.Item key="4">
-                <Link to="/home/app/user/Bill" style={{ color: color }}>
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "Bill", key: "/home/app/user/Bill" }, { ...this.props })
+                }}>
                   Bill
-                </Link>
+                </div>
               </Menu.Item>
               <Menu.Item key="5">
-                <Link to="/home/app/user/Alex" style={{ color: color }}>
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "Alex", key: "/home/app/user/Alex" }, { ...this.props })
+                }}>
                   Alex
-                </Link>
+                </div>
               </Menu.Item>
             </SubMenu>
             <SubMenu

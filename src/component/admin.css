@@ -67,6 +67,8 @@
     line-height: 30px;
     text-align: center;
     cursor: pointer;
+    float:left;
+    margin-left: 5px;
 }
 .menuNo:hover{
     border: 1px solid rgb(85, 16, 197);
@@ -88,4 +90,6 @@
     cursor: pointer;
     color:#fff;
     background-color: rgb(48, 14, 202);
+    float:left;
+    margin-left: 5px;
 }

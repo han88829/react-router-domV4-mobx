@@ -4,10 +4,11 @@ useStrict(true);
 
 class store {
     @observable routeKey = [
-        { name: "主页", key: "/home" }
+       
     ];
-    @action addKey = (data) => {
-        this.props.history.push(data.key)
+    @action addKey = (data, props) => {
+        console.log(props)
+        props.history.push(data.key)
         let offer = false;
         this.routeKey.forEach(function (x, i) {
             if (x.key == data.key) {
@@ -18,12 +19,14 @@ class store {
             this.routeKey.push(data);
         }
     };
-    @action deleteKey = (data) => {
+    @action deleteKey = (data, props) => {
         this.routeKey.forEach(function (x, i) {
             if (x.key == data.key) {
                 this.routeKey.splice(i, 1);
-                let len = this.routeKey.length;
-                this.props.history.push(this.routeKey[len - 1].key)
+                if (data.key == window.location.pathname) {
+                    let len = this.routeKey.length;
+                    props.history.push(this.routeKey[len - 1].key)
+                }
             }
         }, this);
     };
