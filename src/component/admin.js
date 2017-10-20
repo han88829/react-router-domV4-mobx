@@ -70,9 +70,21 @@ class Admin extends React.Component {
               key="sub1"
               title={<span><Icon type="user" /><span>User</span></span>}
             >
-              <Menu.Item key="3">Tom</Menu.Item>
-              <Menu.Item key="4">Bill</Menu.Item>
-              <Menu.Item key="5">Alex</Menu.Item>
+              <Menu.Item key="3">
+                <Link to="/home/app/user/Tom" style={{ color: color }}>
+                  Tom
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="4">
+                <Link to="/home/app/user/Bill" style={{ color: color }}>
+                  Bill
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="5">
+                <Link to="/home/app/user/Alex" style={{ color: color }}>
+                  Alex
+                </Link>
+              </Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub2"
@@ -118,8 +130,8 @@ class Admin extends React.Component {
           </div>
           <Content style={{ margin: '0 16px' }}>
             <Breadcrumb style={{ margin: '12px 0' }}>
-              <Breadcrumb.Item>User</Breadcrumb.Item>
-              <Breadcrumb.Item>Bill</Breadcrumb.Item>
+              <Breadcrumb.Item>首页</Breadcrumb.Item>
+              <Breadcrumb.Item>user</Breadcrumb.Item>
             </Breadcrumb>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
               <Route path="/home/app" component={App} />

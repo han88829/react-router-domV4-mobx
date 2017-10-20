@@ -129,7 +129,7 @@ class AppS extends Component {
                     {/* 路由定义user前面必须跟home父组件路由，否则无法识别 */}
                     {/* 自路由必须写在Apps里面，如果写在上放的App内，会造成点击跳转，url变化页面未动，必须在state props改变之后，才会触发找到子页面 */}
                     <Switch>
-                        <Route exact path="/home/app/user" component={User} />
+                        <Route exact path="/home/app/user/:name" component={User} />
                         <Route exact path="/home/app/test" component={Test} />
                     </Switch>
                 </div>

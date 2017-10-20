@@ -5,7 +5,8 @@ class User extends Component {
     render() {
         return (
             <div>
-                我是子页面
+                <span>大家好，我是 : </span>
+                <span style={{ color: "blue" }}> {this.props.match.params.name}</span>
             </div>
         );
     }
