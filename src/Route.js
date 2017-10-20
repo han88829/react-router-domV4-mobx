@@ -7,13 +7,14 @@ import Login from './component/Login';
 class RouterS extends Component {
 
   render() {
+    console.log(this.props)
     return (
       <Router>
         <div>
           <Switch>
             <Route path="/home" component={Admin} />
             <Route path="/login" exact component={Login} />
-            
+
             {/* 重定向路由 */}
             {<Redirect from="/" to="/home/app" />}
 

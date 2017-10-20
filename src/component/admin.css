@@ -59,3 +59,33 @@
     bottom: 0; 
     padding: 0 30px;
 }
+.home .menuNo{
+    height: 30px;
+    width:80px;
+    position: relative;
+    border: 1px solid #ccc;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+}
+.menuNo:hover{
+    border: 1px solid rgb(85, 16, 197);
+    color:rgb(85, 16, 197);
+}
+.home  .close{
+    position: absolute;
+    top: -8px;
+    right: 3px;
+    height: 16px;
+}
+.home .menuSelect{
+    height: 30px;
+    width:80px;
+    position: relative;
+    border: 1px solid #ccc;
+    line-height: 30px;
+    text-align: center;
+    cursor: pointer;
+    color:#fff;
+    background-color: rgb(48, 14, 202);
+}

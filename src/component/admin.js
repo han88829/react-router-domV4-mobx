@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon, Switch } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon, Switch, Tag } from 'antd';
 import { Link, Route, Redirect } from 'react-router-dom';
 import { inject } from 'mobx-react';
 import App from './app';
@@ -9,7 +9,7 @@ import logo from '../assets/logo.png';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
-
+const { CheckableTag } = Tag;
 
 @inject("store")
 class Admin extends React.Component {
@@ -25,12 +25,23 @@ class Admin extends React.Component {
 
   componentWillReceiveProps(nextProps) {
     this.setState({ name: nextProps.store.fetchData.name });
+    console.log(window.location.pathname)
   }
 
 
   render() {
     // 随主题颜色变化
     const color = this.state.theme ? "rgba(255, 255, 255, 0.67)" : "rgba(0,0,0,0.67)";
+    const MenuC = this.props.store.menuName.routeKey.map((x, i) => {
+      return (
+        <div className={x.key == window.location.pathname ? "menuSelect" : "menuNo"} key={i} >
+          <div></div>
+          <span>菜单</span>
+          <span className="close">X</span>
+        </div >
+      )
+    })
+    console.log(MenuC)
     const img = !this.state.collapsed ?
       {
         width: "40px",
@@ -43,7 +54,7 @@ class Admin extends React.Component {
       }
 
     return (
-      <Layout className="home">
+      <Layout className="home" >
         <Sider
           collapsed={this.state.collapsed}
           style={{ backgroundColor: this.state.theme ? "#404040" : "#fff" }}
@@ -129,10 +140,14 @@ class Admin extends React.Component {
             <span>{this.state.name}</span>
           </div>
           <Content style={{ margin: '0 16px' }}>
-            <Breadcrumb style={{ margin: '12px 0' }}>
-              <Breadcrumb.Item>首页</Breadcrumb.Item>
-              <Breadcrumb.Item>user</Breadcrumb.Item>
-            </Breadcrumb>
+            <div style={{ height: 50, padding: "10px 0" }}>
+              {/* <div className="menuNo menuSelect" >
+                <div></div>
+                <span>菜单</span>
+                <span className="close">X</span>
+              </div> */}
+              {MenuC}
+            </div>
             <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
               <Route path="/home/app" component={App} />
             </div>
