@@ -32,6 +32,7 @@ class Admin extends React.Component {
   render() {
     // 随主题颜色变化
     const color = this.state.theme ? "rgba(255, 255, 255, 0.67)" : "rgba(0,0,0,0.67)";
+    // 管理子页面的打开记录和状态
     const MenuC = this.props.store.menuName.routeKey.map((x, i) => {
       return (
         <div className={x.key == window.location.pathname ? "menuSelect" : "menuNo"} key={i} >
