@@ -38,10 +38,12 @@ class Admin extends React.Component {
     const MenuC = this.props.store.menuName.routeKey.map((x, i) => {
       return (
         <Link to={x.key} key={i}>
-          <div className={x.key == window.location.pathname ? "menuSelect" : "menuNo"}  >
+          <div className={x.key == window.location.pathname ? "menuSelect" : "menuNo"} key={i} >
             <span>{x.name}</span>
-            <span className="close" style={{ display: i == 0 ? "none" : "" }} onClick={() => {
-              this.props.store.menuName.deleteKey(x, { ...this.props })
+            <span className="close" onClick={(e) => {
+              e.stopPropagation()
+              e.preventDefault();
+              this.props.store.menuName.deleteKey(x, { ...this.props });
             }}>X</span>
           </div >
         </Link>
