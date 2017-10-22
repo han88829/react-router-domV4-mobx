@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch, Tag } from 'antd';
 import { Link, Route, Redirect } from 'react-router-dom';
-import { inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import App from './app';
 import './admin.css';
 
@@ -12,6 +12,11 @@ const SubMenu = Menu.SubMenu;
 const { CheckableTag } = Tag;
 
 @inject("store")
+/**
+ * 加入observer监听状态的变化，如果其他地方修改了mobx store状态，会实时改变，否则状态会保存。
+ * 在下次props或者路由发生变化重新render的时候状态才会更新到最新的
+ */
+@observer 
 class Admin extends React.Component {
 
   state = {
@@ -70,7 +75,7 @@ class Admin extends React.Component {
           {/* logo */}
           <div className="homeLogo">
             <img src={logo} alt="logo" style={img} />
-            <span style={{ color: color }}>manage</span>
+            <span style={{ color: color }}>{this.props.store.fetchData.name}</span>
           </div>
           <Menu theme={this.state.theme ? "dark" : "light"} defaultSelectedKeys={['2']} mode="inline">
             <Menu.Item key="1" >
