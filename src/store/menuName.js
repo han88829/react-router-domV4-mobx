@@ -6,6 +6,7 @@ useStrict(true);
 class store {
     @observable routeKey = [];
     @observable parent = [{ name: "首页", path: "/home" }]
+    //导航栏增加新的记录的时候只需要@inject引入store。并调用addKey函数。传入{name:"。。。",key:"path"}即可
     @action addKey = (data, props) => {
         props.history.push(data.key);
         let offer = false;
@@ -19,6 +20,7 @@ class store {
             this.routeKey.push(data);
         }
     };
+    // 删除历史记录的导航栏，后期会加入销毁状态
     @action deleteKey = (data, props) => {
         this.routeKey.forEach(function (x, i) {
             if (x.key == data.key) {
@@ -35,6 +37,7 @@ class store {
             }
         }, this);
     };
+    // 面包屑所有数据存在RouteData中，如增加新的页面，并且需要使用面包屑，请在RouteData中按格式添加即可
     @action addBread = (data) => {
         this.parent = [];
         RouteData.forEach(function (x) {
