@@ -1,7 +1,14 @@
+/*
+ * @page:   首页
+ * @Author: Han 
+ * @Date: 2017-10-23 11:30:16 
+ * @Last Modified by: Han
+ * @Last Modified time: 2017-10-23 22:44:54
+ */
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch, Tag } from 'antd';
 import { Link, Route, Redirect } from 'react-router-dom';
-import { inject, observer } from 'mobx-react';
+import { inject } from 'mobx-react';
 import App from './app';
 import './admin.css';
 
@@ -12,11 +19,6 @@ const SubMenu = Menu.SubMenu;
 const { CheckableTag } = Tag;
 
 @inject("store")
-/**
- * 加入observer监听状态的变化，如果其他地方修改了mobx store状态，会实时改变，否则状态会保存。
- * 在下次props或者路由发生变化重新render的时候状态才会更新到最新的
- */
-@observer 
 class Admin extends React.Component {
 
   state = {
@@ -30,26 +32,24 @@ class Admin extends React.Component {
     this.setState({ collapsed });
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState({ name: nextProps.store.fetchData.name });
-  }
-
-
   render() {
-    console.log(this.props)
     // 随主题颜色变化
     const color = this.state.theme ? "rgba(255, 255, 255, 0.67)" : "rgba(0,0,0,0.67)";
     // 管理子页面的打开记录和状态
-    const MenuC = this.props.store.menuName.routeKey.map((x, i) => {
+    const MenuTitle = this.props.store.menuName.routeKey.map((x, i) => {
       return (
-        <Link to={x.key} key={i}>
+        <Link to={x.key} key={i} onClick={() => {
+          this.props.store.menuName.addKey(x, { ...this.props });
+        }}>
           <div className={x.key == window.location.pathname ? "menuSelect" : "menuNo"} key={i} >
-            <span>{x.name}</span>
-            <span className="close" onClick={(e) => {
+            <div className="MenuBorder" style={{ backgroundColor: x.key == window.location.pathname ? "#108EE9" : "#ccc" }}></div>
+            <span style={{ marginRight: 15 }}>{x.name}</span>
+            <Icon type="close" className="close" onClick={(e) => {
               e.stopPropagation()
               e.preventDefault();
               this.props.store.menuName.deleteKey(x, { ...this.props });
-            }}>X</span>
+            }} />
+
           </div >
         </Link>
       )
@@ -75,68 +75,52 @@ class Admin extends React.Component {
           {/* logo */}
           <div className="homeLogo">
             <img src={logo} alt="logo" style={img} />
-            <span style={{ color: color }}>{this.props.store.fetchData.name}</span>
+            <span style={{ color: color }}>manage</span>
           </div>
           <Menu theme={this.state.theme ? "dark" : "light"} defaultSelectedKeys={['2']} mode="inline">
-            <Menu.Item key="1" >
-              <div
-                style={{ color: color }}
-                onClick={() => {
-                  this.props.store.menuName.addKey({ name: "首页", key: "/home/app" }, { ...this.props })
-                }}
-              >
-                <Icon type="pie-chart" />
-                <span>首页</span>
-              </div>
-            </Menu.Item>
-            <Menu.Item key="2">
-              <div style={{ color: color }} onClick={() => {
-                this.props.store.menuName.addKey({ name: "菜单页", key: "/home" }, { ...this.props })
-              }}>
-                <Icon type="desktop" />
-                <span>菜单页</span>
-              </div>
-            </Menu.Item>
             <SubMenu
               key="sub1"
-              title={<span><Icon type="user" /><span>User</span></span>}
+              title={<span><Icon type="user" /><span>销售</span></span>}
             >
+              <Menu.Item key="1">
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "订单管理", key: "/home/app/sales/order" }, { ...this.props });
+                  this.props.store.menuName.addBread("订单管理");
+                }}>
+                  订单管理
+                </div>
+              </Menu.Item>
+              <Menu.Item key="2">
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "客户管理", key: "/home/app/sales/client" }, { ...this.props });
+                  this.props.store.menuName.addBread("客户管理");
+                }}>
+                  客户管理
+                </div>
+              </Menu.Item>
               <Menu.Item key="3">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "Tom", key: "/home/app/user/Tom" }, { ...this.props })
+                  this.props.store.menuName.addKey({ name: "样品申请管理", key: "/home/app/sales/sample" }, { ...this.props });
+                  this.props.store.menuName.addBread("样品申请管理");
                 }}>
-                  Tom
-                </div>
-              </Menu.Item>
-              <Menu.Item key="4">
-                <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "Bill", key: "/home/app/user/Bill" }, { ...this.props })
-                }}>
-                  Bill
-                </div>
-              </Menu.Item>
-              <Menu.Item key="5">
-                <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "Alex", key: "/home/app/user/Alex" }, { ...this.props })
-                }}>
-                  Alex
+                  样品申请管理
                 </div>
               </Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub2"
-              title={<span><Icon type="team" /><span>Team</span></span>}
+              title={<span><Icon type="team" /><span>采购</span></span>}
             >
-              <Menu.Item key="6">Team 1</Menu.Item>
-              <Menu.Item key="8">Team 2</Menu.Item>
+              <Menu.Item key="4">Team 1</Menu.Item>
+              <Menu.Item key="5">Team 2</Menu.Item>
             </SubMenu>
-            <Menu.Item key="9">
+            <Menu.Item key="6">
               <Icon type="file" />
-              <span>File</span>
+              <span>库存</span>
             </Menu.Item>
           </Menu>
           {/* 底部菜单主题修改 */}
-          <div className="SilderEdit" style={{ display: this.state.collapsed ? "none" : "" }}>
+          {/* <div className="SilderEdit" style={{ display: this.state.collapsed ? "none" : "" }}>
             <Icon type="bulb" style={{ color: color }} />
             <span style={{ color: color, marginLeft: 5 }}>选择主题</span>
             <Switch
@@ -149,11 +133,11 @@ class Admin extends React.Component {
                   theme: value
                 });
               }} />
-          </div>
+          </div> */}
 
         </Sider>
         <Layout >
-          <div className="contentTitle">
+          <div className="homeContentTitle">
             <div
               className="_3sSwc"
               onClick={() => {
@@ -163,18 +147,21 @@ class Admin extends React.Component {
             >
               <Icon type={!this.state.collapsed ? "menu-fold" : "menu-unfold"} />
             </div>
-            <span>{this.state.name}</span>
+            <Breadcrumb className="menuBread">
+              {this.props.store.menuName.parent.map((x, i) => {
+                return (
+                  <Breadcrumb.Item key={i}>
+                    <Link to={x.path}>{x.name}</Link>
+                  </Breadcrumb.Item>
+                )
+              })}
+            </Breadcrumb>
           </div>
-          <Content style={{ margin: '0 16px' }}>
-            <div style={{ height: 50, padding: "10px 0" }}>
-              {/* <div className="menuNo menuSelect" >
-                <div></div>
-                <span>菜单</span>
-                <span className="close">X</span>
-              </div> */}
-              {MenuC}
+          <Content style={{ margin: '0 16px', maxHeight: 'calc(100vh - 47px)' }}>
+            <div style={{ height: 50, padding: "10px 0", marginLeft: -5 }}>
+              {MenuTitle}
             </div>
-            <div style={{ padding: 24, background: '#fff', minHeight: 360 }}>
+            <div style={{ background: '#fff', minHeight: 360 }}>
               <Route path="/home/app" component={App} />
             </div>
           </Content>
