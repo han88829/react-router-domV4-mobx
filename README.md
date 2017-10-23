@@ -29,6 +29,7 @@ my-app/
     store/
       store.js //状态树
       fetchData.js //子状态树
+      menuName.js //路由  异步状态管理（严格模式下的改变）
     component/
       app.js  //首页
       user.js //app子页面

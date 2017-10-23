@@ -6,7 +6,7 @@ useStrict(true);
 class store {
     @observable routeKey = [];
     @observable parent = [{ name: "首页", path: "/home" }]
-    addKey = (data, props) => {
+    @action addKey = (data, props) => {
         props.history.push(data.key);
         let offer = false;
         this.routeKey.forEach(function (x, i) {
@@ -19,7 +19,7 @@ class store {
             this.routeKey.push(data);
         }
     };
-    deleteKey = (data, props) => {
+    @action deleteKey = (data, props) => {
         this.routeKey.forEach(function (x, i) {
             if (x.key == data.key) {
                 this.routeKey.splice(i, 1);
@@ -35,7 +35,7 @@ class store {
             }
         }, this);
     };
-    addBread = (data) => {
+    @action addBread = (data) => {
         this.parent = [];
         RouteData.forEach(function (x) {
             if (data === x.name) {
@@ -43,6 +43,14 @@ class store {
             }
         }, this);
     }
+    // 严格模式使用fetch promise async 无法修改状态值
+    /**
+     * 可以使用action关键之包裹如下所示
+     * fetch('/home/name').then(x=>x.json()).then(action(x=>{
+     * console.log(x);
+     * this.name = x.name;//这里action包裹之后才可以修改严格模式下的状态
+     * }))
+     */
 }
 
 const menuName = new store();
