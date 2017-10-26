@@ -3,7 +3,7 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-10-26 21:00:21
+ * @Last Modified time: 2017-10-26 21:07:04
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button } from 'antd';
@@ -99,7 +99,8 @@ class Admin extends React.Component {
         >
           {/* logo */}
           <div className="homeLogo">
-            <i className={this.state.collapsed ? "manage-logomin" : 'manage-logo'} style={{ fontSize: '28px', marginTop: '20px', display: 'block', color: '#fff' }} />
+            <img src={logo} alt="logo" style={img} />
+            <span style={{ color: color }}>manage</span>
           </div>
           <Menu
             theme={this.state.theme ? "dark" : "light"}
@@ -112,7 +113,7 @@ class Admin extends React.Component {
             style={{ backgroundColor: this.state.theme ? "#2B3245" : "#fff" }}>
             <SubMenu
               key="sub1"
-              title={<span><i className='manage-xiaoshou' style={classData} /><span>{this.state.collapsed ? "" : '销售'}</span></span>}
+              title={<span><Icon type="user" /><span>销售</span></span>}
             >
               <Menu.Item key="1">
                 <div style={{ color: color }} onClick={() => {
@@ -152,7 +153,7 @@ class Admin extends React.Component {
             </SubMenu>
             <SubMenu
               key="sub2"
-              title={<span><i className='manage-caigou' style={classData} /><span>{this.state.collapsed ? "" : '采购'}</span></span>}
+              title={<span><Icon type="team" /><span>采购</span></span>}
             >
               <Menu.Item key="4">
                 <div style={{ color: color }} onClick={() => {
@@ -166,35 +167,10 @@ class Admin extends React.Component {
                 供应商
               </Menu.Item>
             </SubMenu>
-            <SubMenu
-              key="sub3"
-              title={<span><i className='manage-kucun' style={classData} /><span>{this.state.collapsed ? "" : '库存管理'}</span></span>}
-            >
-              <Menu.Item key="6">
-                <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "库存查询", key: "/nest/app/product/stock" }, { ...this.props });
-                  this.props.store.menuName.addBread("库存查询");
-                }}>
-                  库存查询
-                </div>
-              </Menu.Item>
-              <Menu.Item key="7">
-                <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "SKU管理", key: "/nest/app/product/manage" }, { ...this.props });
-                  this.props.store.menuName.addBread("SKU管理");
-                }}>
-                  SKU管理
-                </div>
-              </Menu.Item>
-              <Menu.Item key="8">
-                <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "警戒提醒", key: "/nest/app/product/alert" }, { ...this.props });
-                  this.props.store.menuName.addBread("警戒提醒");
-                }}>
-                  警戒提醒
-                </div>
-              </Menu.Item>
-            </SubMenu>
+            <Menu.Item key="6">
+              <Icon type="file" />
+              <span>库存</span>
+            </Menu.Item>
           </Menu>
 
           {/* 底部菜单主题修改 */}
