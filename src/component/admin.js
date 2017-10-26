@@ -3,15 +3,16 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-10-23 22:44:54
+ * @Last Modified time: 2017-10-26 21:00:21
  */
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon, Switch, Tag } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button } from 'antd';
 import { Link, Route, Redirect } from 'react-router-dom';
 import { inject } from 'mobx-react';
+import { action, toJS } from 'mobx';
 import App from './app';
+import RouteData from '../store/RouteData';
 import './admin.css';
-
 import logo from '../assets/logo.png';
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -28,8 +29,23 @@ class Admin extends React.Component {
   };
 
 
+  componentWillMount() {
+    let path = window.location.pathname;
+    RouteData.forEach(function (x, i) {
+      if (x.path == path) {
+        this.props.store.menuName.addKey({ name: x.name, key: x.path }, { ...this.props })
+      }
+    }, this);
+  }
+
   onCollapse = (collapsed) => {
     this.setState({ collapsed });
+  }
+
+  @action
+  onChangeSelect = (data) => {
+    console.log(data)
+    this.props.store.menuName.selectedKeys = data.key;
   }
 
   render() {
@@ -65,34 +81,61 @@ class Admin extends React.Component {
         width: " 28px",
         margin: "6px 7px",
       }
+    const classData = !this.state.collapsed ?
+      {
 
+        marginRight: 10,
+      }
+      :
+      {
+        fontSize: 16,
+        marginRight: 10,
+      }
     return (
       <Layout className="home" >
         <Sider
           collapsed={this.state.collapsed}
-          style={{ backgroundColor: this.state.theme ? "#404040" : "#fff" }}
+          style={{ backgroundColor: this.state.theme ? "#2B3245" : "#fff" }}
         >
           {/* logo */}
           <div className="homeLogo">
-            <img src={logo} alt="logo" style={img} />
-            <span style={{ color: color }}>manage</span>
+            <i className={this.state.collapsed ? "manage-logomin" : 'manage-logo'} style={{ fontSize: '28px', marginTop: '20px', display: 'block', color: '#fff' }} />
           </div>
-          <Menu theme={this.state.theme ? "dark" : "light"} defaultSelectedKeys={['2']} mode="inline">
+          <Menu
+            theme={this.state.theme ? "dark" : "light"}
+            selectedKeys={[this.props.store.menuName.selectedKeys]}
+            defaultSelectedKeys={[this.props.store.menuName.selectedKeys]}
+            defaultOpenKeys={toJS(this.props.store.menuName.openKeys)}
+            mode="inline"
+            onSelect={this.onChangeSelect}
+            onOpenChange={this.onOpenChange}
+            style={{ backgroundColor: this.state.theme ? "#2B3245" : "#fff" }}>
             <SubMenu
               key="sub1"
-              title={<span><Icon type="user" /><span>销售</span></span>}
+              title={<span><i className='manage-xiaoshou' style={classData} /><span>{this.state.collapsed ? "" : '销售'}</span></span>}
             >
               <Menu.Item key="1">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "订单管理", key: "/home/app/sales/order" }, { ...this.props });
+                  this.props.store.menuName.addKey({ name: "订单管理", key: "/nest/app/sales/order" }, { ...this.props });
                   this.props.store.menuName.addBread("订单管理");
                 }}>
                   订单管理
+                  <div
+                    className="Admin_add"
+                    style={{ display: this.props.store.menuName.selectedKeys == 1 ? "" : "none" }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault()
+                      this.props.store.menuName.addKey({ name: "新建订单", key: "/nest/app/sales/ordernew" }, { ...this.props });
+                      this.props.store.menuName.addBread("新建订单");
+                    }}>
+                    新增
+                  </div>
                 </div>
               </Menu.Item>
               <Menu.Item key="2">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "客户管理", key: "/home/app/sales/client" }, { ...this.props });
+                  this.props.store.menuName.addKey({ name: "客户管理", key: "/nest/app/sales/client" }, { ...this.props });
                   this.props.store.menuName.addBread("客户管理");
                 }}>
                   客户管理
@@ -100,7 +143,7 @@ class Admin extends React.Component {
               </Menu.Item>
               <Menu.Item key="3">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "样品申请管理", key: "/home/app/sales/sample" }, { ...this.props });
+                  this.props.store.menuName.addKey({ name: "样品申请管理", key: "/nest/app/sales/sample" }, { ...this.props });
                   this.props.store.menuName.addBread("样品申请管理");
                 }}>
                   样品申请管理
@@ -109,16 +152,51 @@ class Admin extends React.Component {
             </SubMenu>
             <SubMenu
               key="sub2"
-              title={<span><Icon type="team" /><span>采购</span></span>}
+              title={<span><i className='manage-caigou' style={classData} /><span>{this.state.collapsed ? "" : '采购'}</span></span>}
             >
-              <Menu.Item key="4">Team 1</Menu.Item>
-              <Menu.Item key="5">Team 2</Menu.Item>
+              <Menu.Item key="4">
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "供应商管理", key: "/nest/app/purchase/supplier" }, { ...this.props });
+                  this.props.store.menuName.addBread("供应商管理");
+                }}>
+                  供应商管理
+                </div>
+              </Menu.Item>
+              <Menu.Item key="5">
+                供应商
+              </Menu.Item>
             </SubMenu>
-            <Menu.Item key="6">
-              <Icon type="file" />
-              <span>库存</span>
-            </Menu.Item>
+            <SubMenu
+              key="sub3"
+              title={<span><i className='manage-kucun' style={classData} /><span>{this.state.collapsed ? "" : '库存管理'}</span></span>}
+            >
+              <Menu.Item key="6">
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "库存查询", key: "/nest/app/product/stock" }, { ...this.props });
+                  this.props.store.menuName.addBread("库存查询");
+                }}>
+                  库存查询
+                </div>
+              </Menu.Item>
+              <Menu.Item key="7">
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "SKU管理", key: "/nest/app/product/manage" }, { ...this.props });
+                  this.props.store.menuName.addBread("SKU管理");
+                }}>
+                  SKU管理
+                </div>
+              </Menu.Item>
+              <Menu.Item key="8">
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "警戒提醒", key: "/nest/app/product/alert" }, { ...this.props });
+                  this.props.store.menuName.addBread("警戒提醒");
+                }}>
+                  警戒提醒
+                </div>
+              </Menu.Item>
+            </SubMenu>
           </Menu>
+
           {/* 底部菜单主题修改 */}
           {/* <div className="SilderEdit" style={{ display: this.state.collapsed ? "none" : "" }}>
             <Icon type="bulb" style={{ color: color }} />
@@ -151,7 +229,15 @@ class Admin extends React.Component {
               {this.props.store.menuName.parent.map((x, i) => {
                 return (
                   <Breadcrumb.Item key={i}>
-                    <Link to={x.path}>{x.name}</Link>
+                    <Link to={x.path} onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      if (i == 0) {
+                        this.props.store.menuName.addKey({ name: this.props.store.menuName.parent[1].name, key: this.props.store.menuName.parent[1].path }, { ...this.props });
+                        return
+                      }
+                      this.props.store.menuName.addKey({ name: x.name, key: x.path }, { ...this.props });
+                    }}>{x.name}</Link>
                   </Breadcrumb.Item>
                 )
               })}
@@ -162,7 +248,7 @@ class Admin extends React.Component {
               {MenuTitle}
             </div>
             <div style={{ background: '#fff', minHeight: 360 }}>
-              <Route path="/home/app" component={App} />
+              <Route path="/nest/app" component={App} />
             </div>
           </Content>
         </Layout>

@@ -1,14 +1,15 @@
 .home{
     height:100vh;
     overflow: hidden;
+    font-family:"PingFangSC-Regular";
 }
 .home .ant-layout{
     background-color: #f1f1f1
 }
 .home .homeLogo{
     text-align: center;
-    height: 40px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 50px;
     cursor: pointer;
     margin: 10px 0;
     overflow: hidden;
@@ -108,4 +109,21 @@
     position: absolute;
     top:13px;
     left:50px;
+}
+.ant-menu-dark .ant-menu-inline.ant-menu-sub{
+    background:#1D2333
+}
+.home .Admin_add{
+    float:right;
+    margin-right: 15px;
+    text-align: center;
+    font-size:12px;
+    font-family:"PingFangSC-Regular";
+    color:rgba(16,142,233,1);
+    margin-top: 12px;
+    width: 45px;
+    height: 20px;
+    background: rgba(255,255,255,1);
+    border-radius: 4px;
+    line-height: 20px;
 }
