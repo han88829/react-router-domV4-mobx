@@ -3,7 +3,7 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-10-26 21:07:04
+ * @Last Modified time: 2017-10-26 21:17:29
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button } from 'antd';
@@ -113,63 +113,63 @@ class Admin extends React.Component {
             style={{ backgroundColor: this.state.theme ? "#2B3245" : "#fff" }}>
             <SubMenu
               key="sub1"
-              title={<span><Icon type="user" /><span>销售</span></span>}
+              title={<span><Icon type="user" /><span>个人</span></span>}
             >
               <Menu.Item key="1">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "订单管理", key: "/nest/app/sales/order" }, { ...this.props });
-                  this.props.store.menuName.addBread("订单管理");
+                  this.props.store.menuName.addKey({ name: "个人", key: "/home/app/user" }, { ...this.props });
+                  this.props.store.menuName.addBread("个人");
                 }}>
-                  订单管理
+                  个人
                   <div
                     className="Admin_add"
                     style={{ display: this.props.store.menuName.selectedKeys == 1 ? "" : "none" }}
                     onClick={(e) => {
                       e.stopPropagation();
                       e.preventDefault()
-                      this.props.store.menuName.addKey({ name: "新建订单", key: "/nest/app/sales/ordernew" }, { ...this.props });
-                      this.props.store.menuName.addBread("新建订单");
+                      this.props.store.menuName.addKey({ name: "新建", key: "/home/app/newuser" }, { ...this.props });
+                      this.props.store.menuName.addBread("新建");
                     }}>
-                    新增
+                    新建
                   </div>
                 </div>
               </Menu.Item>
               <Menu.Item key="2">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "客户管理", key: "/nest/app/sales/client" }, { ...this.props });
-                  this.props.store.menuName.addBread("客户管理");
+                  this.props.store.menuName.addKey({ name: "个人管理", key: "/home/app/useredit" }, { ...this.props });
+                  this.props.store.menuName.addBread("个人管理");
                 }}>
-                  客户管理
+                  个人管理
                 </div>
               </Menu.Item>
               <Menu.Item key="3">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "样品申请管理", key: "/nest/app/sales/sample" }, { ...this.props });
-                  this.props.store.menuName.addBread("样品申请管理");
+                  this.props.store.menuName.addKey({ name: "其他", key: "/home/app/else" }, { ...this.props });
+                  this.props.store.menuName.addBread("其他");
                 }}>
-                  样品申请管理
+                  其他
                 </div>
               </Menu.Item>
             </SubMenu>
             <SubMenu
               key="sub2"
-              title={<span><Icon type="team" /><span>采购</span></span>}
+              title={<span><Icon type="team" /><span>部门</span></span>}
             >
               <Menu.Item key="4">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "供应商管理", key: "/nest/app/purchase/supplier" }, { ...this.props });
-                  this.props.store.menuName.addBread("供应商管理");
+                  this.props.store.menuName.addKey({ name: "部门", key: "/home/app/group" }, { ...this.props });
+                  this.props.store.menuName.addBread("部门");
                 }}>
-                  供应商管理
+                  部门
                 </div>
               </Menu.Item>
               <Menu.Item key="5">
-                供应商
+                item2
               </Menu.Item>
             </SubMenu>
             <Menu.Item key="6">
               <Icon type="file" />
-              <span>库存</span>
+              <span>其他</span>
             </Menu.Item>
           </Menu>
 
@@ -224,7 +224,7 @@ class Admin extends React.Component {
               {MenuTitle}
             </div>
             <div style={{ background: '#fff', minHeight: 360 }}>
-              <Route path="/nest/app" component={App} />
+              <Route path="/home/app" component={App} />
             </div>
           </Content>
         </Layout>
