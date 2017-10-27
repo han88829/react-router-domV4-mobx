@@ -3,7 +3,7 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-10-26 21:17:29
+ * @Last Modified time: 2017-10-27 09:11:20
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button } from 'antd';
@@ -164,7 +164,12 @@ class Admin extends React.Component {
                 </div>
               </Menu.Item>
               <Menu.Item key="5">
-                item2
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "三级联动", key: "/home/app/area" }, { ...this.props });
+                  this.props.store.menuName.addBread("三级联动");
+                }}>
+                  省市区三级联动
+                </div>
               </Menu.Item>
             </SubMenu>
             <Menu.Item key="6">

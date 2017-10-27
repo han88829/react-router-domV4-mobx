@@ -4,6 +4,7 @@ import { observable, action, useStrict } from "mobx";
 import { Route, Switch, Link } from 'react-router-dom';
 import User from './user';
 import Test from './test';
+import Linkage from './Linkage';
 
 
 /*
@@ -130,6 +131,7 @@ class AppS extends Component {
                     {/* 自路由必须写在Apps里面，如果写在上放的App内，会造成点击跳转，url变化页面未动，必须在state props改变之后，才会触发找到子页面 */}
                     <Switch>
                         <Route exact path="/home/app/user/:name" component={User} />
+                        <Route exact path="/home/app/area" component={Linkage} />
                         <Route exact path="/home/app/test" component={Test} />
                     </Switch>
                 </div>

@@ -49,6 +49,16 @@ const RouteData = [
         ]
     },
     {
+        name: "三级联动",
+        path: "/home/app/area",
+        key: "5",
+        parentKey: "sub2",
+        data: [
+            { name: "部门", path: "/home/app/group" },
+            { name: "三级联动", path: "/home/app/area" },
+        ]
+    },
+    {
         name: "首页",
         path: "/home",
         key: "0",
