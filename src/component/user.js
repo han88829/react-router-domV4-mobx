@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 
 class User extends Component {
 
+    componentWillMount() {
+        console.log(this.props)
+    }
+
     render() {
         return (
             <div>
-                <span>大家好，我是 : </span>
-                <span style={{ color: "blue" }}> {this.props.match.params.name}</span>
+                <span>大家好，我是 :123</span>
             </div>
         );
     }

@@ -39,7 +39,13 @@ class store {
 
                 let len = this.routeKey.length;
                 this.addBread(len > 0 ? this.routeKey[len - 1].name : "首页");
-                props.history.push(len > 0 ? this.routeKey[len - 1].key : "home")
+                let pushData = {
+                    name: len > 0 ? this.routeKey[len - 1].name : "首页",
+                    key: len > 0 ? this.routeKey[len - 1].key : "home"
+                };
+                // props.history.push(len > 0 ? this.routeKey[len - 1].key : "home")
+                this.addKey(pushData, props)
+
             }
         }, this);
     };
