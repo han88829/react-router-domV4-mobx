@@ -13,19 +13,13 @@ class TableLsit extends Component {
             title: 'Age',
             dataIndex: 'age',
             key: 'age',
-            render: (value, row, index) => {
+            render: (text, record) => {
                 const obj = {
-                    children: value,
-                    props: {},
-                };
-                if (index == 0) {
-                    obj.props.rowSpan = 2
+                    children: ["hello", "word"],
+                    rowSpan: 2
                 }
-                if (index == 1) {
-                    obj.props.rowSpan = 0
-                }
-                return obj;
-            },
+                return obj
+            }
 
         }, {
             title: 'Address',
