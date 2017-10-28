@@ -3,7 +3,7 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-10-28 14:29:49
+ * @Last Modified time: 2017-10-28 14:41:15
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button } from 'antd';
@@ -140,6 +140,14 @@ class Admin extends React.Component {
                   this.props.store.menuName.addBread("个人管理");
                 }}>
                   个人管理
+                </div>
+              </Menu.Item>
+              <Menu.Item key="7">
+                <div style={{ color: color }} onClick={() => {
+                  this.props.store.menuName.addKey({ name: "table", key: "/home/app/table" }, { ...this.props });
+                  this.props.store.menuName.addBread("table");
+                }}>
+                  Table
                 </div>
               </Menu.Item>
               <Menu.Item key="3">

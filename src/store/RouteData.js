@@ -30,6 +30,16 @@ const RouteData = [
         ]
     },
     {
+        name: "table",
+        path: "/home/app/table",
+        key: "7",
+        parentKey: "sub1",
+        data: [
+            { name: "个人", path: "/home/app/user" },
+            { name: "其他", path: "/home/app/table" },
+        ]
+    },
+    {
         name: "其他",
         path: "/home/app/else",
         key: "3",

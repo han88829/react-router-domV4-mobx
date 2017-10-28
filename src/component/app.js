@@ -5,6 +5,7 @@ import { Route, Switch, Link } from 'react-router-dom';
 import User from './user';
 import Test from './test';
 import Linkage from './Linkage';
+import Table from "./table";
 
 
 /*
@@ -47,6 +48,7 @@ class App extends Component {
                         <Route exact path="/home/app/user" component={User} />
                         <Route exact path="/home/app/area" component={Linkage} />
                         <Route exact path="/home/app/test" component={Test} />
+                        <Route exact path="/home/app/table" component={Table} />
                     </Switch>
                 </div>
             </div>
