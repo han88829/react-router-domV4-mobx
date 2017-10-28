@@ -35,3 +35,7 @@ my-app/
       user.js //app子页面
       amdin.js //app同级页面
 ```
+
+
+##  mobx管理状态
+* 保存打开历史
