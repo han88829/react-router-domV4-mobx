@@ -1,64 +1,70 @@
 import React, { Component } from 'react';
-import { Table, Icon } from 'antd';
+import { Table, Icon, Row, Col } from 'antd';
 import './table.css';
 
 class TableLsit extends Component {
     render() {
-        const columns = [{
-            title: 'Name',
-            dataIndex: 'name',
-            key: 'name',
-            render: text => <a href="#">{text}</a>,
-        }, {
-            title: 'Age',
-            dataIndex: 'age',
-            key: 'age',
-            render: (text, record) => {
-                const obj = {
-                    children: ["hello", "word"],
-                    rowSpan: 2
-                }
-                return obj
+        const data = [
+            {
+                sku: 1,
+                name: 1,
+                type: 1,
+                fee: 1,
+                children: [{ x1: 1, x2: 2, x3: 3 }, { x1: 1, x2: 2, x3: 3 }],
+            },
+            {
+                sku: 1,
+                name: 1,
+                type: 1,
+                fee: 1,
+                children: [{ x1: 1, x2: 2, x3: 3 }],
+            }, {
+                sku: 1,
+                name: 1,
+                type: 1,
+                fee: 1,
+                children: [{ x1: 1, x2: 2, x3: 3 }, { x1: 1, x2: 2, x3: 3 }, { x1: 1, x2: 2, x3: 3 }, { x1: 1, x2: 2, x3: 3 }, { x1: 1, x2: 2, x3: 3 }, { x1: 1, x2: 2, x3: 3 }],
             }
-
-        }, {
-            title: 'Address',
-            dataIndex: 'address',
-            key: 'address',
-        }, {
-            title: 'Action',
-            key: 'action',
-            render: (text, record) => (
-                <span>
-                    操作
-                </span>
-            ),
-        }];
-
-        const data = [{
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-        }, {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-        }, {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sidney No. 1 Lake Park',
-        }];
+        ]
         return (
             <div className="table">
-                <Table
-                    columns={columns}
-                    dataSource={data}
-                    bordered
-                />
-            </div>
+                <Row className="tableTitle" type="flex" align="middle" >
+                    <Col span={3}>SKU</Col>
+                    <Col span={3}> 商品名称</Col>
+                    <Col span={3}> 分类</Col>
+                    <Col span={3} style={{ borderRight: "1px solid #dcdcdc", height: 35, lineHeight: "35px" }}> 金额</Col>
+                    <Col span={3} > 包含单品</Col>
+                    <Col span={3}>规格 </Col>
+                    <Col span={3} >单品库存 </Col>
+                    <Col span={3} style={{ borderLeft: "1px solid #dcdcdc", height: 35, lineHeight: "35px" }}>操作 </Col>
+                </Row>
+                <Row >
+                    {data.map((x, i) => {
+                        let height = x.children.length > 0 ? x.children.length * 35 : 35;
+                        return (
+                            <Row className="tableContent" type="flex" align="middle" key={i} >
+                                <Col span={3} style={{ height: height, lineHeight: `${height}px` }}>SKU</Col>
+                                <Col span={3} style={{ height: height, lineHeight: `${height}px` }}> 商品名称</Col>
+                                <Col span={3} style={{ height: height, lineHeight: `${height}px` }}> 分类</Col>
+                                <Col span={3} style={{ borderRight: "1px solid #dcdcdc", height: height, lineHeight: `${height}px` }}> 金额</Col>
+                                <Col span={9} >
+                                    {x.children.map((a, j) => {
+                                        return (
+                                            <Row type="flex" align="middle" key={j} style={{ height: 35, borderTop: j != 0 ? "1px solid #dcdcdc" : "" }}>
+                                                <Col span={8}>1</Col>
+                                                <Col span={8}>2</Col>
+                                                <Col span={8}>3</Col>
+                                            </Row>
+                                        )
+                                    })}
+                                </Col>
+                                <Col span={3} style={{ borderLeft: "1px solid #dcdcdc", height: height, lineHeight: `${height}px` }}>操作 </Col>
+                            </Row>
+                        )
+                    })}
+                </Row>
+
+            </div >
         );
     }
 }

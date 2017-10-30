@@ -1,3 +1,12 @@
 .table{
     padding:20px;
 }
+.tableTitle{
+    height: 35px;
+    border: 1px solid #DCDCDC;
+    background-color: #f1f1f1;
+}
+.tableContent{
+    border: 1px solid #dcdcdc;
+    border-top:none;
+}
