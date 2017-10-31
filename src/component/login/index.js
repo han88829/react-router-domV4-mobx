@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox, message } from 'antd';
 import { inject } from 'mobx-react';
 import { observable, action, useStrict } from "mobx";
-import './test.css';
+import './login.css';
 
 useStrict(true)
 const FormItem = Form.Item;

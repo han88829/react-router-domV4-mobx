@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { observable, action, useStrict } from "mobx";
 import { Route, Switch, Link } from 'react-router-dom';
-import User from './user';
-import Test from './test';
-import Linkage from './Linkage';
-import Table from "./table";
+import User from '../user';
+import Test from '../test';
+import Linkage from '../Linkage';
+import Table from "../table";
 
 
 /*

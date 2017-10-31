@@ -14,28 +14,19 @@
 
 ## 目录结构
 
-
-```
-my-app/
-  README.md
-  node_modules/
-  package.json
-  public/
-    index.html
-    favicon.ico
-  src/
-    index.js //主页面
-    Route.js //路由
-    store/
-      store.js //状态树
-      fetchData.js //子状态树
-      menuName.js //路由  异步状态管理（严格模式下的改变）
-    component/
-      app.js  //首页
-      user.js //app子页面
-      amdin.js //app同级页面
-```
-
+`
+public
+├─scripts
+└─src        
+    ├─assets       静态资源文件
+    ├─component    页面代码
+    │  ├─app       菜单内嵌子页面路由
+    │  ├─login     登录页
+    │  ├─table     table表格
+    │  ├─test      测试页
+    │  └─user      用户
+    └─store        mobx全局状态树
+`
 
 ##  mobx管理状态
 * 保存打开历史

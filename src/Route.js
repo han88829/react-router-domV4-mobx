@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import Admin from './component/admin';
-import Login from './component/Login';
+import Login from './component/login';
 
 
 class RouterS extends Component {
