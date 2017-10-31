@@ -14,7 +14,7 @@
 
 ## 目录结构
 
-
+```
 public
  ├─scripts
  └─src        
@@ -26,7 +26,7 @@ public
     │  ├─test      测试页
     │  └─user      用户
     └─store        mobx全局状态树
-
+```
 
 ##  mobx管理状态
 * 保存打开历史
