@@ -79,7 +79,7 @@
 
 .home  .close{
     position: absolute;
-    right: 5px;
+    right: 0;
     top:10px;
 }
 .home .menuSelect{
@@ -126,4 +126,20 @@
     background: rgba(255,255,255,1);
     border-radius: 4px;
     line-height: 20px;
+}
+.home .homeTab .ant-tabs-bar{
+    border-bottom: none;
+    margin-bottom:0;
+}
+.home .homeTab .ant-tabs-nav .ant-tabs-tab{
+    padding:8px 0;
+}
+.home .homeTab .ant-tabs-ink-bar{
+    display: none !important;
+}
+.home .homeTab .ant-tabs-nav .ant-tabs-tab{
+    margin-right: 5px;
+}
+.home .homeTab .ant-tabs-nav{
+    padding-right: 350px;
 }

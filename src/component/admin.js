@@ -3,10 +3,10 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-10-28 14:41:15
+ * @Last Modified time: 2017-10-31 13:45:41
  */
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button, Tabs } from 'antd';
 import { Link, Route, Redirect } from 'react-router-dom';
 import { inject } from 'mobx-react';
 import { action, toJS } from 'mobx';
@@ -18,6 +18,7 @@ import logo from '../assets/logo.png';
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
 const { CheckableTag } = Tag;
+const TabPane = Tabs.TabPane;
 
 @inject("store")
 class Admin extends React.Component {
@@ -233,9 +234,36 @@ class Admin extends React.Component {
             </Breadcrumb>
           </div>
           <Content style={{ margin: '0 16px', maxHeight: 'calc(100vh - 47px)' }}>
-            <div style={{ height: 50, padding: "10px 0", marginLeft: -5 }}>
+            {/* <div style={{ height: 50, padding: "10px 0", marginLeft: -5 }}>
               {MenuTitle}
-            </div>
+            </div> */}
+            {/* 使用tab进行管理，页面标签过多时，便于切换 */}
+            <Tabs style={{ height: 50 }} activeKey={window.location.pathname} a={window.location.pathname} className="homeTab">
+              {this.props.store.menuName.routeKey.map((x, i) => {
+
+                return (
+                  <TabPane
+                    key={x.key}
+                    tab={<Link to={x.key} key={x.key} onClick={() => {
+                      this.props.store.menuName.addKey(x, { ...this.props });
+                    }}>
+                      <div className={x.key == window.location.pathname ? "menuSelect" : "menuNo"} key={i} >
+                        <div className="MenuBorder" style={{ backgroundColor: x.key == window.location.pathname ? "#108EE9" : "#ccc" }}></div>
+                        <span style={{ marginRight: 15 }}>{x.name}</span>
+                        <Icon type="close" className="close" onClick={(e) => {
+                          e.stopPropagation()
+                          e.preventDefault();
+                          this.props.store.menuName.deleteKey(x, { ...this.props });
+                        }} />
+
+                      </div >
+                    </Link>}
+                  >
+
+                  </TabPane >
+                )
+              })}
+            </Tabs>
             <div style={{ background: '#fff', minHeight: 360 }}>
               <Route path="/home/app" component={App} />
             </div>
