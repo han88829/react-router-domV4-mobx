@@ -3,7 +3,7 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-10-31 13:45:41
+ * @Last Modified time: 2017-11-01 16:41:01
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button, Tabs } from 'antd';
@@ -188,7 +188,7 @@ class Admin extends React.Component {
           </Menu>
 
           {/* 底部菜单主题修改 */}
-          {/* <div className="SilderEdit" style={{ display: this.state.collapsed ? "none" : "" }}>
+          <div className="SilderEdit" style={{ display: this.state.collapsed ? "none" : "" }}>
             <Icon type="bulb" style={{ color: color }} />
             <span style={{ color: color, marginLeft: 5 }}>选择主题</span>
             <Switch
@@ -201,7 +201,7 @@ class Admin extends React.Component {
                   theme: value
                 });
               }} />
-          </div> */}
+          </div>
 
         </Sider>
         <Layout >
