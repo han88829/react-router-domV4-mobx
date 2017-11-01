@@ -16,7 +16,7 @@ class RouterS extends Component {
             <Route path="/login" exact component={Login} />
 
             {/* 重定向路由 */}
-            {<Redirect from="/" to="/home/app" />}
+            {<Redirect from="/" to="/home/app/user" />}
 
           </Switch>
         </div>
