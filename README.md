@@ -15,15 +15,17 @@
 ## 目录结构
 
 ```
-public
- ├─scripts
- └─src        
+├─public
+├─scripts
+└─src
     ├─assets       静态资源文件
     ├─component    页面代码
     │  ├─app       菜单内嵌子页面路由
     │  ├─login     登录页
-    │  ├─table     table表格
-    │  ├─test      测试页
+    │  ├─report    报表知识
+    │  ├─rtsp      rtsp视频播放
+    │  ├─table     表格
+    │  ├─test      测试页面
     │  └─user      用户
     └─store        mobx全局状态树
 ```
