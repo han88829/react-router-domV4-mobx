@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import { observable, action, useStrict } from "mobx";
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, Redirect } from 'react-router-dom';
 import User from '../user';
 import Test from '../test';
 import Linkage from '../Linkage';
 import Table from "../table";
-
+import Rtsp from '../rtsp';
+import Report from "../report";
 
 /*
 为了支持Mobx的 @。。。 写法，
@@ -49,6 +50,11 @@ class App extends Component {
                         <Route exact path="/home/app/area" component={Linkage} />
                         <Route exact path="/home/app/test" component={Test} />
                         <Route exact path="/home/app/table" component={Table} />
+                        <Route exact path="/home/app/rtsp" component={Rtsp} />
+                        <Route exact path="/home/app/report" component={Report} />
+
+                        {/* 重定向路由 */}
+                        {<Redirect from="/" to="/home/app/user" />}
                     </Switch>
                 </div>
             </div>

@@ -3,17 +3,17 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-11-01 16:41:01
+ * @Last Modified time: 2017-11-02 13:37:08
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button, Tabs } from 'antd';
 import { Link, Route, Redirect } from 'react-router-dom';
 import { inject } from 'mobx-react';
 import { action, toJS } from 'mobx';
-import App from './app';
-import RouteData from '../store/RouteData';
+import App from '../app';
+import RouteData from '../../store/RouteData';
 import './admin.css';
-import logo from '../assets/logo.png';
+import logo from '../../assets/logo.png';
 
 const { Header, Content, Footer, Sider } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -114,7 +114,7 @@ class Admin extends React.Component {
             style={{ backgroundColor: this.state.theme ? "#2B3245" : "#fff" }}>
             <SubMenu
               key="sub1"
-              title={<span><Icon type="user" /><span>个人</span></span>}
+              title={<span><Icon type="user" /><span>常用集合</span></span>}
             >
               <Menu.Item key="1">
                 <div style={{ color: color }} onClick={() => {
@@ -162,14 +162,14 @@ class Admin extends React.Component {
             </SubMenu>
             <SubMenu
               key="sub2"
-              title={<span><Icon type="team" /><span>部门</span></span>}
+              title={<span><Icon type="team" /><span>第三方</span></span>}
             >
               <Menu.Item key="4">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "部门", key: "/home/app/group" }, { ...this.props });
-                  this.props.store.menuName.addBread("部门");
+                  this.props.store.menuName.addKey({ name: "RTSP", key: "/home/app/rtsp" }, { ...this.props });
+                  this.props.store.menuName.addBread("RTSP");
                 }}>
-                  部门
+                  RTSP
                 </div>
               </Menu.Item>
               <Menu.Item key="5">
