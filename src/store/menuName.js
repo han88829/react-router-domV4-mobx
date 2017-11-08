@@ -8,7 +8,8 @@ class store {
     @observable parent = [{ name: "首页", path: "/home" }];
     @observable selectedKeys = "1";
     @observable openKeys = ["sub1"];
-    addKey = (data, props) => {
+    @observable loading = false;
+    @action addKey = (data, props) => {
         props.history.push(data.key);
         RouteData.forEach(function (x) {
             if (data.key === x.path) {
@@ -27,7 +28,7 @@ class store {
             this.routeKey.push(data);
         }
     };
-    deleteKey = (data, props) => {
+    @action deleteKey = (data, props) => {
         this.routeKey.forEach(function (x, i) {
             if (x.key == data.key) {
                 this.routeKey.splice(i, 1);
@@ -49,13 +50,21 @@ class store {
             }
         }, this);
     };
-    addBread = (data) => {
+    @action addBread = (data) => {
         this.parent = [];
         RouteData.forEach(function (x) {
             if (data === x.name) {
                 this.parent = x.data;
             }
         }, this);
+    }
+
+    @action show = () => {
+        this.loading = true;
+    }
+
+    @action hide = () => {
+        this.loading = false;
     }
 }
 

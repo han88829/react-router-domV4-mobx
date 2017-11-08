@@ -3,12 +3,12 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-11-02 13:37:08
+ * @Last Modified time: 2017-11-08 13:58:46
  */
 import React, { Component } from 'react';
-import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button, Tabs } from 'antd';
+import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button, Tabs, Spin } from 'antd';
 import { Link, Route, Redirect } from 'react-router-dom';
-import { inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import { action, toJS } from 'mobx';
 import App from '../app';
 import RouteData from '../../store/RouteData';
@@ -21,6 +21,7 @@ const { CheckableTag } = Tag;
 const TabPane = Tabs.TabPane;
 
 @inject("store")
+@observer
 class Admin extends React.Component {
 
   state = {
@@ -31,6 +32,7 @@ class Admin extends React.Component {
 
 
   componentWillMount() {
+    this.props.store.fetchData.getData({ ...this.props });
     let path = window.location.pathname;
     RouteData.forEach(function (x, i) {
       if (x.path == path) {
@@ -205,69 +207,71 @@ class Admin extends React.Component {
 
         </Sider>
         <Layout >
-          <div className="homeContentTitle">
-            <div
-              className="_3sSwc"
-              onClick={() => {
-                let collapsed = this.state.collapsed;
-                this.onCollapse(!collapsed);
-              }}
-            >
-              <Icon type={!this.state.collapsed ? "menu-fold" : "menu-unfold"} />
+          <Spin spinning={this.props.store.menuName.loading} delay={200} >
+            <div className="homeContentTitle">
+              <div
+                className="_3sSwc"
+                onClick={() => {
+                  let collapsed = this.state.collapsed;
+                  this.onCollapse(!collapsed);
+                }}
+              >
+                <Icon type={!this.state.collapsed ? "menu-fold" : "menu-unfold"} />
+              </div>
+              <Breadcrumb className="menuBread">
+                {this.props.store.menuName.parent.map((x, i) => {
+                  return (
+                    <Breadcrumb.Item key={i}>
+                      <Link to={x.path} onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (i == 0) {
+                          this.props.store.menuName.addKey({ name: this.props.store.menuName.parent[1].name, key: this.props.store.menuName.parent[1].path }, { ...this.props });
+                          return
+                        }
+                        this.props.store.menuName.addKey({ name: x.name, key: x.path }, { ...this.props });
+                      }}>{x.name}</Link>
+                    </Breadcrumb.Item>
+                  )
+                })}
+              </Breadcrumb>
             </div>
-            <Breadcrumb className="menuBread">
-              {this.props.store.menuName.parent.map((x, i) => {
-                return (
-                  <Breadcrumb.Item key={i}>
-                    <Link to={x.path} onClick={(e) => {
-                      e.preventDefault();
-                      e.stopPropagation();
-                      if (i == 0) {
-                        this.props.store.menuName.addKey({ name: this.props.store.menuName.parent[1].name, key: this.props.store.menuName.parent[1].path }, { ...this.props });
-                        return
-                      }
-                      this.props.store.menuName.addKey({ name: x.name, key: x.path }, { ...this.props });
-                    }}>{x.name}</Link>
-                  </Breadcrumb.Item>
-                )
-              })}
-            </Breadcrumb>
-          </div>
-          <Content style={{ margin: '0 16px', maxHeight: 'calc(100vh - 47px)' }}>
-            {/* <div style={{ height: 50, padding: "10px 0", marginLeft: -5 }}>
+            <Content style={{ margin: '0 16px', maxHeight: 'calc(100vh - 47px)' }}>
+              {/* <div style={{ height: 50, padding: "10px 0", marginLeft: -5 }}>
               {MenuTitle}
             </div> */}
-            {/* 使用tab进行管理，页面标签过多时，便于切换 */}
-            <Tabs style={{ height: 50 }} activeKey={window.location.pathname} a={window.location.pathname} className="homeTab">
-              {this.props.store.menuName.routeKey.map((x, i) => {
+              {/* 使用tab进行管理，页面标签过多时，便于切换 */}
+              <Tabs style={{ height: 50 }} activeKey={window.location.pathname} a={window.location.pathname} className="homeTab">
+                {this.props.store.menuName.routeKey.map((x, i) => {
 
-                return (
-                  <TabPane
-                    key={x.key}
-                    tab={<Link to={x.key} key={x.key} onClick={() => {
-                      this.props.store.menuName.addKey(x, { ...this.props });
-                    }}>
-                      <div className={x.key == window.location.pathname ? "menuSelect" : "menuNo"} key={i} >
-                        <div className="MenuBorder" style={{ backgroundColor: x.key == window.location.pathname ? "#108EE9" : "#ccc" }}></div>
-                        <span style={{ marginRight: 15 }}>{x.name}</span>
-                        <Icon type="close" className="close" onClick={(e) => {
-                          e.stopPropagation()
-                          e.preventDefault();
-                          this.props.store.menuName.deleteKey(x, { ...this.props });
-                        }} />
+                  return (
+                    <TabPane
+                      key={x.key}
+                      tab={<Link to={x.key} key={x.key} onClick={() => {
+                        this.props.store.menuName.addKey(x, { ...this.props });
+                      }}>
+                        <div className={x.key == window.location.pathname ? "menuSelect" : "menuNo"} key={i} >
+                          <div className="MenuBorder" style={{ backgroundColor: x.key == window.location.pathname ? "#108EE9" : "#ccc" }}></div>
+                          <span style={{ marginRight: 15 }}>{x.name}</span>
+                          <Icon type="close" className="close" onClick={(e) => {
+                            e.stopPropagation()
+                            e.preventDefault();
+                            this.props.store.menuName.deleteKey(x, { ...this.props });
+                          }} />
 
-                      </div >
-                    </Link>}
-                  >
+                        </div >
+                      </Link>}
+                    >
 
-                  </TabPane >
-                )
-              })}
-            </Tabs>
-            <div style={{ background: '#fff', minHeight: 360 }}>
-              <Route path="/home/app" component={App} />
-            </div>
-          </Content>
+                    </TabPane >
+                  )
+                })}
+              </Tabs>
+              <div style={{ background: '#fff', minHeight: 360 }}>
+                <Route path="/home/app" component={App} />
+              </div>
+            </Content>
+          </Spin>
         </Layout>
       </Layout >
     );
