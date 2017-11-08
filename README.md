@@ -27,6 +27,9 @@
     │  ├─table     表格
     │  ├─test      测试页面
     │  └─user      用户
+    ├─Bundle.js    按需加载配置
+    ├─index.js     总入口文件
+    ├─Route.js     路由配置文件
     └─store        mobx全局状态树
 ```
 
