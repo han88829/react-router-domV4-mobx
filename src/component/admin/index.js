@@ -3,7 +3,7 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-11-08 13:58:46
+ * @Last Modified time: 2017-11-14 13:14:15
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button, Tabs, Spin } from 'antd';
@@ -185,7 +185,10 @@ class Admin extends React.Component {
             </SubMenu>
             <Menu.Item key="6">
               <Icon type="file" />
-              <span>其他</span>
+              <span onClick={() => {
+                this.props.store.menuName.addKey({ name: "测试", key: "/home/app/test" }, { ...this.props });
+                this.props.store.menuName.addBread("测试");
+              }}>测试</span>
             </Menu.Item>
           </Menu>
 

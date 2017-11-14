@@ -87,6 +87,16 @@ const RouteData = [
             { name: "首页", path: "/home" }
         ]
     },
+    {
+        name: "测试",
+        path: "/home/app/test",
+        key: "6",
+        parentKey: "",
+        data: [
+            { name: "首页", path: "/home" },
+            { name: "测试", path: "/home/app/test" }
+        ]
+    },
 ]
 
 export default RouteData;
