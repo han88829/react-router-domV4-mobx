@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Row, Checkbox } from 'antd';
+import { Row, Checkbox, Button } from 'antd';
 import { action, toJS } from 'mobx';
 import { inject, observer } from 'mobx-react';
 
@@ -8,21 +8,24 @@ import { inject, observer } from 'mobx-react';
 @inject('store')
 @observer
 class App extends Component {
+    state = {
+        releaseBugs: false
+    };
     render() {
+        if (this.state.releaseBugs) {
+            throw new Error("我捕捉到一个错误!");
+        }
         return (
             <div>
-                {this.props.store.test.data.map((x, i) => {
-                    return (
-                        <Row key={i}>
-                            <Checkbox
-                                onChange={action((e) => {
-                                    this.props.store.test.data[i].checked = e.target.checked;
-                                })}
-                                checked={x.checked}
-                            >Checkbox</Checkbox>
-                        </Row>
-                    )
-                })}
+                <Button
+                    onClick={() => {
+                        this.setState({
+                            releaseBugs: true
+                        });
+                    }}
+                >
+                    错误测试
+                </Button>
             </div>
         );
     }
