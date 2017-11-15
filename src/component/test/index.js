@@ -9,12 +9,25 @@ const FormItem = Form.Item;
 @inject("store")
 @observer
 class Test extends Component {
+    state = {
+        hasError: false
+    }
+    componentDidCatch(error, info) {
+        console.log(error);
+        console.log(info);
+        // 显示回退UI
+        this.setState({ hasError: true });
+    }
     render() {
+        if (this.state.hasError) {
+            return <div>发生错误，请查看错误信息</div>
+        }
         return (
             <div>
                 <Button
                     type="primary"
                     onClick={action(() => {
+                        throw new Error("错误")
                         this.props.store.test.visible = true;
                         let data = [];
                         for (let i = 0; i < 10; i++) {
