@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, runInAction } from 'mobx';
 
 class store {
     @observable name = "喊喊";
@@ -14,7 +14,12 @@ class store {
         //     console.log(props.store.menuName.loading);
         //     console.log(x)
         // })).catch(err => console.error(err))
-        console.log(props.store.menuName.loading);
+        let timer = setTimeout(() => {
+            runInAction(() => {
+                props.store.menuName.loading = false;
+                clearTimeout(timer)
+            })
+        }, 1000);
     }
 }
 
