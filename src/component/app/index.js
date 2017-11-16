@@ -27,14 +27,14 @@ class App extends Component {
 
     componentWillMount() {
         if (!this.state.token) {
-            this.props.history.push('/login');
+            this.props.history.push('/mobx/login');
             return
         }
     }
 
     componentWillReceiveProps(nextProps) {
         if (!this.state.token) {
-            this.props.history.push('/login');
+            this.props.history.push('/mobx/login');
             return
         }
     }
@@ -46,15 +46,15 @@ class App extends Component {
                     {/* 路由定义user前面必须跟home父组件路由，否则无法识别 */}
                     {/* 路由必须写在Apps里面，如果写在上放的App内，会造成点击跳转，url变化页面未动，必须在state props改变之后，才会触发找到子页面 */}
                     <Switch>
-                        <Route exact path="/home/app/user" component={User} />
-                        <Route exact path="/home/app/area" component={Linkage} />
-                        <Route exact path="/home/app/test" component={Test} />
-                        <Route exact path="/home/app/table" component={Table} />
-                        <Route exact path="/home/app/rtsp" component={Rtsp} />
-                        <Route exact path="/home/app/report" component={Report} />
+                        <Route exact path="/mobx/app/user" component={User} />
+                        <Route exact path="/mobx/app/area" component={Linkage} />
+                        <Route exact path="/mobx/app/test" component={Test} />
+                        <Route exact path="/mobx/app/table" component={Table} />
+                        <Route exact path="/mobx/app/rtsp" component={Rtsp} />
+                        <Route exact path="/mobx/app/report" component={Report} />
 
                         {/* 重定向路由 */}
-                        {<Redirect from="/" to="/home/app/user" />}
+                        {<Redirect from="/" to="/mobx/app/user" />}
                     </Switch>
                 </div>
             </div>

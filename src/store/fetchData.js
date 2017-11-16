@@ -19,7 +19,7 @@ class store {
                 props.store.menuName.loading = false;
                 clearTimeout(timer)
             })
-        }, 1000);
+        }, 500);
     }
 }
 

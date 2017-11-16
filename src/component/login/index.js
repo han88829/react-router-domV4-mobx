@@ -25,7 +25,7 @@ class NormalLoginForm extends React.Component {
                 localStorage.setItem('token', ss);
                 this.props.store.LoginToken.token = ss;
                 message.success("登录成功！")
-                this.props.history.push('/app')
+                this.props.history.push('/mobx/app')
             }
         });
     }

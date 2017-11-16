@@ -17,11 +17,11 @@ class RouterS extends Component {
       <Router>
         <div>
           <Switch>
-            <Route path="/home" component={Admin} />
-            <Route path="/login" exact component={Login} />
+            <Route path="/mobx" component={Admin} />
+            <Route path="/mobx/login" exact component={Login} />
 
             {/* 重定向路由 */}
-            {<Redirect from="/" to="/home/app" />}
+            {<Redirect from="/" to="/mobx/app" />}
 
           </Switch>
         </div>

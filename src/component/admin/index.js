@@ -3,7 +3,7 @@
  * @Author: Han 
  * @Date: 2017-10-23 11:30:16 
  * @Last Modified by: Han
- * @Last Modified time: 2017-11-14 13:14:15
+ * @Last Modified time: 2017-11-16 18:00:05
  */
 import React, { Component } from 'react';
 import { Layout, Menu, Breadcrumb, Icon, Switch, Tag, Button, Tabs, Spin } from 'antd';
@@ -120,7 +120,7 @@ class Admin extends React.Component {
             >
               <Menu.Item key="1">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "个人", key: "/home/app/user" }, { ...this.props });
+                  this.props.store.menuName.addKey({ name: "个人", key: "/mobx/app/user" }, { ...this.props });
                   this.props.store.menuName.addBread("个人");
                 }}>
                   个人
@@ -130,7 +130,7 @@ class Admin extends React.Component {
                     onClick={(e) => {
                       e.stopPropagation();
                       e.preventDefault()
-                      this.props.store.menuName.addKey({ name: "新建", key: "/home/app/newuser" }, { ...this.props });
+                      this.props.store.menuName.addKey({ name: "新建", key: "/mobx/app/newuser" }, { ...this.props });
                       this.props.store.menuName.addBread("新建");
                     }}>
                     新建
@@ -139,7 +139,7 @@ class Admin extends React.Component {
               </Menu.Item>
               <Menu.Item key="2">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "个人管理", key: "/home/app/useredit" }, { ...this.props });
+                  this.props.store.menuName.addKey({ name: "个人管理", key: "/mobx/app/useredit" }, { ...this.props });
                   this.props.store.menuName.addBread("个人管理");
                 }}>
                   个人管理
@@ -147,7 +147,7 @@ class Admin extends React.Component {
               </Menu.Item>
               <Menu.Item key="7">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "table", key: "/home/app/table" }, { ...this.props });
+                  this.props.store.menuName.addKey({ name: "table", key: "/mobx/app/table" }, { ...this.props });
                   this.props.store.menuName.addBread("table");
                 }}>
                   Table
@@ -155,7 +155,7 @@ class Admin extends React.Component {
               </Menu.Item>
               <Menu.Item key="3">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "其他", key: "/home/app/else" }, { ...this.props });
+                  this.props.store.menuName.addKey({ name: "其他", key: "/mobx/app/else" }, { ...this.props });
                   this.props.store.menuName.addBread("其他");
                 }}>
                   其他
@@ -168,7 +168,7 @@ class Admin extends React.Component {
             >
               <Menu.Item key="4">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "RTSP", key: "/home/app/rtsp" }, { ...this.props });
+                  this.props.store.menuName.addKey({ name: "RTSP", key: "/mobx/app/rtsp" }, { ...this.props });
                   this.props.store.menuName.addBread("RTSP");
                 }}>
                   RTSP
@@ -176,7 +176,7 @@ class Admin extends React.Component {
               </Menu.Item>
               <Menu.Item key="5">
                 <div style={{ color: color }} onClick={() => {
-                  this.props.store.menuName.addKey({ name: "三级联动", key: "/home/app/area" }, { ...this.props });
+                  this.props.store.menuName.addKey({ name: "三级联动", key: "/mobx/app/area" }, { ...this.props });
                   this.props.store.menuName.addBread("三级联动");
                 }}>
                   省市区三级联动
@@ -186,7 +186,7 @@ class Admin extends React.Component {
             <Menu.Item key="6">
               <Icon type="file" />
               <span onClick={() => {
-                this.props.store.menuName.addKey({ name: "测试", key: "/home/app/test" }, { ...this.props });
+                this.props.store.menuName.addKey({ name: "测试", key: "/mobx/app/test" }, { ...this.props });
                 this.props.store.menuName.addBread("测试");
               }}>测试</span>
             </Menu.Item>
@@ -271,7 +271,7 @@ class Admin extends React.Component {
                 })}
               </Tabs>
               <div style={{ background: '#fff', minHeight: 360 }}>
-                <Route path="/home/app" component={App} />
+                <Route path="/mobx/app" component={App} />
               </div>
             </Content>
           </Spin>

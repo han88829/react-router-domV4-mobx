@@ -2,99 +2,99 @@
 const RouteData = [
     {
         name: "常用集合",
-        path: "/home/app/user",
+        path: "/mobx/app/user",
         key: "1",
         parentKey: "sub1",
         data: [
-            { name: "常用集合", path: "/home/app/user" }
+            { name: "常用集合", path: "/mobx/app/user" }
         ]
     },
     {
         name: "新建",
-        path: "/home/app/newuser",
+        path: "/mobx/app/newuser",
         key: "1",
         parentKey: "sub1",
         data: [
-            { name: "常用集合", path: "/home/app/user" },
-            { name: "新建", path: "/home/app/newuser" },
+            { name: "常用集合", path: "/mobx/app/user" },
+            { name: "新建", path: "/mobx/app/newuser" },
         ]
     },
     {
         name: "个人管理",
-        path: "/home/app/useredit",
+        path: "/mobx/app/useredit",
         key: "2",
         parentKey: "sub1",
         data: [
-            { name: "常用集合", path: "/home/app/user" },
-            { name: "个人管理", path: "/home/app/useredit" },
+            { name: "常用集合", path: "/mobx/app/user" },
+            { name: "个人管理", path: "/mobx/app/useredit" },
         ]
     },
     {
         name: "table",
-        path: "/home/app/table",
+        path: "/mobx/app/table",
         key: "7",
         parentKey: "sub1",
         data: [
-            { name: "常用集合", path: "/home/app/user" },
-            { name: "其他", path: "/home/app/table" },
+            { name: "常用集合", path: "/mobx/app/user" },
+            { name: "其他", path: "/mobx/app/table" },
         ]
     },
     {
         name: "其他",
-        path: "/home/app/else",
+        path: "/mobx/app/else",
         key: "3",
         parentKey: "sub1",
         data: [
-            { name: "常用集合", path: "/home/app/user" },
-            { name: "其他", path: "/home/app/else" },
+            { name: "常用集合", path: "/mobx/app/user" },
+            { name: "其他", path: "/mobx/app/else" },
         ]
     },
     {
         name: "第三方",
-        path: "/home/app/group",
+        path: "/mobx/app/group",
         key: "4",
         parentKey: "sub2",
         data: [
-            { name: "第三方", path: "/home/app/group" },
+            { name: "第三方", path: "/mobx/app/group" },
         ]
     },
     {
         name: "RTSP",
-        path: "/home/app/rtsp",
+        path: "/mobx/app/rtsp",
         key: "4",
         parentKey: "sub2",
         data: [
-            { name: "第三方", path: "/home/app/group" },
-            { name: "RTSP", path: "/home/app/rtsp" },
+            { name: "第三方", path: "/mobx/app/group" },
+            { name: "RTSP", path: "/mobx/app/rtsp" },
         ]
     },
     {
         name: "三级联动",
-        path: "/home/app/area",
+        path: "/mobx/app/area",
         key: "5",
         parentKey: "sub2",
         data: [
-            { name: "第三方", path: "/home/app/group" },
-            { name: "三级联动", path: "/home/app/area" },
+            { name: "第三方", path: "/mobx/app/group" },
+            { name: "三级联动", path: "/mobx/app/area" },
         ]
     },
     {
         name: "首页",
-        path: "/home",
+        path: "/mobx",
         key: "0",
         parentKey: "0",
         data: [
-            { name: "首页", path: "/home" }
+            { name: "首页", path: "/mobx" }
         ]
     },
     {
         name: "测试",
-        path: "/home/app/test",
+        path: "/mobx/app/test",
         key: "6",
         parentKey: "",
         data: [
-            { name: "首页", path: "/home" },
-            { name: "测试", path: "/home/app/test" }
+            { name: "首页", path: "/mobx" },
+            { name: "测试", path: "/mobx/app/test" }
         ]
     },
 ]
