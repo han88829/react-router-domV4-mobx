@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Route from './Route';
-import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'mobx-react';
 import { observable, } from "mobx";
 import stores from './store/store';
@@ -19,4 +18,3 @@ ReactDOM.render(
         <Route />
     </Provider>
     , document.getElementById('root'));
-registerServiceWorker();
