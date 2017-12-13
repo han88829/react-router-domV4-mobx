@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Modal, Input } from 'antd';
+import Test from './Test';
 
 class User extends Component {
 
@@ -16,7 +17,12 @@ class User extends Component {
             plan: {}
         }
     }
-
+    onChange = (name, value) => {
+        let plan = { ...this.state.plan, [name]: value }
+        this.setState({
+            plan
+        });
+    }
     render() {
         return (
             <div>
@@ -45,15 +51,7 @@ class User extends Component {
                         this.setState({ visible: false });
                     }}
                 >
-                    <Input
-                        value={this.state.plan.name}
-                        onChange={(e) => {
-                            let plan = { ...this.state.plan, name: e.target.value }
-                            this.setState({
-                                plan
-                            });
-                        }}
-                    />
+                    <Test plan={this.state.plan} onChange={this.onChange} />
                 </Modal>
             </div>
         );
