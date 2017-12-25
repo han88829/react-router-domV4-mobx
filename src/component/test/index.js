@@ -10,24 +10,28 @@ const FormItem = Form.Item;
 @inject("store")
 @observer
 class Test extends Component {
-    state = {
-        hasError: false
+    constructor(props) {
+        super(props);
+        this.state = {
+            releaseBugs: false
+        };
+        this.handleClick = this.handleClick.bind(this);
     }
-    componentDidCatch(error, info) {
-        console.log(error);
-        console.log(info);
-        // 显示回退UI
-        this.setState({ hasError: true });
+
+    handleClick() {
+        this.setState({
+            releaseBugs: true
+        });
     }
 
     render() {
-        if (this.state.hasError) {
-            return <div>发生错误，请查看错误信息</div>
+        if (this.state.releaseBugs) {
+            throw new Error("I crashed!");
         }
         return (
-            <ErrorTest>
-                <TestModal />
-            </ErrorTest>
+            <button className="btn" onClick={this.handleClick}>
+                {"Scary Button!"}
+            </button>
         );
     }
 }

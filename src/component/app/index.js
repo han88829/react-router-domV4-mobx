@@ -25,20 +25,6 @@ class App extends Component {
         }
     }
 
-    componentWillMount() {
-        if (!this.state.token) {
-            this.props.history.push('/mobx/login');
-            return
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (!this.state.token) {
-            this.props.history.push('/mobx/login');
-            return
-        }
-    }
-
     render() {
         return (
             <div style={{ textAlign: "center" }}>

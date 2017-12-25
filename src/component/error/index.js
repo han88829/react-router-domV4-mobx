@@ -18,11 +18,12 @@ class ErrorBoundary extends React.Component {
     }
 
     render() {
+        console.log(this.state.error)
         if (this.state.error) {
             // Fallback UI if an error occurs
             return (
                 <div>
-                    <h2>{"发生错误! 请查看详细错误信息"}</h2>
+                    <h2>{"Oh-no! Something went wrong"}</h2>
                     <p className="red">
                         {this.state.error && this.state.error.toString()}
                     </p>
