@@ -5,6 +5,8 @@ import { observer, inject } from 'mobx-react';
 import './test.css';
 import TestModal from './TestModal';
 import ErrorTest from '../error';
+import './index.scss';
+
 const FormItem = Form.Item;
 
 @inject("store")
@@ -29,9 +31,12 @@ class Test extends Component {
             throw new Error("I crashed!");
         }
         return (
-            <button className="btn" onClick={this.handleClick}>
-                {"Scary Button!"}
-            </button>
+            <ErrorTest>
+                <button className="btn" onClick={this.handleClick}>
+                    {"Scary Button!"}
+                </button>
+            </ErrorTest>
+
         );
     }
 }
