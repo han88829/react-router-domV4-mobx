@@ -5,7 +5,6 @@ import { observer, inject } from 'mobx-react';
 import './test.css';
 import TestModal from './TestModal';
 import ErrorTest from '../error';
-import './index.scss';
 
 const FormItem = Form.Item;
 
