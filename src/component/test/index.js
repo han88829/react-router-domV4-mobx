@@ -14,14 +14,15 @@ class Test extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            releaseBugs: false
+            releaseBugs: false,
+            data: {}
         };
         this.handleClick = this.handleClick.bind(this);
     }
 
     handleClick() {
         this.setState({
-            releaseBugs: true
+            'data.hello': 222222
         });
     }
 
